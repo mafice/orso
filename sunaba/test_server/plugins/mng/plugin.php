@@ -3,7 +3,7 @@
 $plugin_name = "mng";
 
 
-add_api($plugin_name, "create_proj", function(){
+add_api("create_proj", function(){
 
   $proj_name = get_request("proj_name", VLD_PROJ_NAME);
   $name      = get_request("name");
@@ -17,11 +17,11 @@ add_api($plugin_name, "create_proj", function(){
 
   // proj_dir/
   if(!mkdir($proj_dir))
-    raise_error("Couldn't create a project directory. Check the permission of the projects directory.");
+    raise_error("could not create a project directory. Check the permission of the projects directory.");
 
   // proj_dir/files
   if(!mkdir($proj_dir . DIR_SEP . "files"))
-    raise_error("Couldn't create a directory.");
+    raise_error("could not create a directory.");
 
   // proj_dir/project.yaml
   $proj_conf = Array(
@@ -30,7 +30,7 @@ add_api($plugin_name, "create_proj", function(){
                     );
 
   if(!file_put_contents($proj_dir . DIR_SEP . "project.yaml", Spyc::YAMLDump($proj_conf)))
-    raise_error("Couldn't create project.yaml.");
+    raise_error("could not create project.yaml.");
 
   // proj_dir/activities.rss
   $activities = simplexml_load_string( <<< 'HDOC'
@@ -43,25 +43,28 @@ HDOC
   );
 
   if(!$activities->asXML($proj_dir . DIR_SEP . "activities.rss"))
-  raise_error("Couldn't create activities.rss.");
+  raise_error("could not create activities.rss.");
 
   return Array();
 });
 
 
-add_api($plugin_name, "delete_proj", function(){
+add_api("delete_proj", function(){
 
   /* rm -rf */
   function rmrf($dir){
 
+    if(is_file($dir) && !unlink($dir))
+      raise_error("could not delete file: {$dir}");
+
     foreach(glob($dir . DIR_SEP . "*") as $file){
 
       if(is_file($file)  && !unlink($file)){
-        raise_error("couldn't delete file: {$file}");
+        raise_error("could not delete file: {$file}");
 
       // ディレクトリが空ならrmdirする
       }else if(is_dir($file) && count(glob($file . DIR_SEP . "*")) == 0 && !rmdir($file)){
-        raise_error("couldn't delete directory: {$file}");
+        raise_error("could not delete directory: {$file}");
 
       }else{
 
@@ -70,7 +73,7 @@ add_api($plugin_name, "delete_proj", function(){
     }
 
     if(is_dir($dir) && count(glob($dir . DIR_SEP . "*")) == 0 && !rmdir($dir))
-      raise_error("couldn't delete directory: {$dir}");
+      raise_error("could not delete directory: {$dir}");
   }
 
 
@@ -81,7 +84,7 @@ add_api($plugin_name, "delete_proj", function(){
 });
 
 
-add_api($plugin_name, "get_proj_list", function(){
+add_api("get_proj_list", function(){
 
   $list = Array();
   $i    = 0;
@@ -94,22 +97,4 @@ add_api($plugin_name, "get_proj_list", function(){
   }
 
   return $list;
-});
-
-
-add_api($plugin_name, "", function(){
-
-  return Array();
-});
-
-
-add_api($plugin_name, "", function(){
-
-  return Array();
-});
-
-
-add_api($plugin_name, "", function(){
-
-  return Array();
 });

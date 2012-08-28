@@ -8,3 +8,4 @@ define("SKIN_DIR",       BASE_DIR . "skin"     . DIR_SEP);
 
 /* ユーザからの入力データのチェック用の正規表現 */
 define("VLD_PROJ_NAME", "/[a-zA-Z0-9_]+/");
+define("VLD_API_NAME",  "/[a-zA-Z0-9_]+/");

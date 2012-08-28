@@ -13,6 +13,9 @@ function control_hook ($action, $hookname, $func = "" /* FIXME: デフォルト�
 
     case "call":
 
+      if(!isset($hooks[$hookname]))
+        raise_error("Unknown API: {$hookname}.");
+
       foreach($hooks[$hookname] as $func){
         $result = $func($_POST);
       }
