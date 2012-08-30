@@ -1,0 +1,12 @@
+■ インストール
+1. pear channel-discover pear.phpunit.de
+2. pear install phpunit/PHPUnit
+
+■ テストの流れ
+1. テストコードを記述するスクリプトを作成する
+2. PHPUnit/Autoload.php, テスト対象のスクリプトをrequire_onceなどを使って読み込む
+3. テストコードにファイル名と同じ名前のクラスを作成し、PHPUnit_Framework_TestCaseなどを継承させる。
+4. コンソール上で"phpunit テストコード"でテストを実行できる
+
+■ 備考
+ブラウザで確認することも可能。テストコードをCGIで実行する形になる
