@@ -1,0 +1,17 @@
+■ ダウンロード
+http://jsdoc-toolkit.googlecode.com/files/jsdoc_toolkit-2.4.0.zip
+
+■ ドキュメントの生成方法（基本）
+java -jar jsrun.jar app\run.js {指定したいファイルやディレクトリ} -t=テンプレート {そのほかオプション}
+
+■ ドキュメントの生成方法（Eclipse）
+1. [実行] -> [外部ツール] -> [外部ツールの構成] から[プログラム]の部分に新しい構成を作成
+2. ロケーションにはjavaの実行ファイルを指定
+3. 作業用ディレクトリはダウンロードしたjsdocの[jsdoc-toolkit]にしておくと良さそう
+4. 引数（作業用ディレクトリをjsdoc-toolkitに指定した場合）
+	-jar jsrun.jar app\run.js {ドキュメントを作りたい場所} -d={ドキュメントを記録する場所}
+5. 警告やエラーが無ければ何も出力されず（不親切！！）
+	指定ディレクトリにドキュメントが生成される。
+
+■ 参考用
+http://www12.atwiki.jp/aias-jsdoctoolkit/
