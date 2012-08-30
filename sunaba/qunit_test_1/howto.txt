@@ -1,0 +1,15 @@
+■ インストール
+https://github.com/jquery/qunit/tree/master/qunit
+ここからqunit.js, qunit.cssをダウンロードして配置すればOK。
+
+■ テストの流れ
+1. テストを実行するためのHTMLファイルを作成する
+2. qunit関連のファイル、テスト対象のファイル、テストコードを記述したファイルを読み込ませる
+3. HTMLファイルをブラウザで開くと結果を見ることが出来る
+
+■ 備考
+node.jsやphantom.jsなどを使うとコンソール上でテストすることも可能。
+
+■ 参考用
+phpDocumentorでドキュメントの自動生成
+http://caspar.hazymoon.jp/php/phpDocumentor/
